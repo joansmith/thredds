@@ -1,22 +1,18 @@
+---
 language: java
 sudo: false
-
 jdk:
-  - oraclejdk7
-  - oraclejdk8
-  - openjdk7
-
+- oraclejdk7
+- oraclejdk8
+- openjdk7
 env:
   global:
-    - MAVEN_OPTS="-Djna.library.path=${TRAVIS_BUILD_DIR}/travis -DskipTests=false -DfailIfNoTests=false"
-
+  - MAVEN_OPTS="-Djna.library.path=${TRAVIS_BUILD_DIR}/travis -DskipTests=false -DfailIfNoTests=false"
 script:
-  - cd cdm && mvn test ${MAVEN_OPTS}
-  - cd ../udunits && mvn test ${MAVEN_OPTS}
-  - cd ../ui && mvn test ${MAVEN_OPTS}
-  - cd ../waterml && mvn test ${MAVEN_OPTS}
-    #- cd ../dap4/d4tests && mvn test ${MAVEN_OPTS}
-
+- cd cdm && mvn test ${MAVEN_OPTS}
+- cd ../udunits && mvn test ${MAVEN_OPTS}
+- cd ../ui && mvn test ${MAVEN_OPTS}
+- cd ../waterml && mvn test ${MAVEN_OPTS}
 cache:
   directories:
-    - $HOME/.gradle
+  - "$HOME/.gradle"
