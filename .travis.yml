@@ -1,28 +1,18 @@
+---
 language: java
 sudo: false
-
 env:
   global:
-    - LD_LIBRARY_PATH=${TRAVIS_BUILD_DIR}/travis/lib/ubuntu-12.04.5-amd64
-    - BUILD_IDV=false
-
+  - LD_LIBRARY_PATH=${TRAVIS_BUILD_DIR}/travis/lib/ubuntu-12.04.5-amd64
+  - BUILD_IDV=false
 matrix:
   include:
-    - jdk: oraclejdk7
-    - jdk: oraclejdk8
-    - jdk: openjdk7
-#      env: BUILD_IDV=true
-
+  - jdk: oraclejdk7
+  - jdk: oraclejdk8
+  - jdk: openjdk7
 script:
-  # If we need to do an IDV build, run the script
-  - if [[ $BUILD_IDV == true ]]; then
-      travis/build_idv.sh;
-    fi
-
-  - if [[ $BUILD_IDV == false ]]; then
-      ./gradlew --info testAll;
-    fi
-
+- if [[ $BUILD_IDV == true ]]; then travis/build_idv.sh; fi
+- if [[ $BUILD_IDV == false ]]; then ./gradlew --info testAll; fi
 cache:
   directories:
-    - $HOME/.gradle
+  - "$HOME/.gradle"
